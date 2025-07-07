@@ -7,22 +7,33 @@ body {
 }
 #terminal {
   padding: 1em;
-  max-width: 800px;
 }
 .prompt {
   margin-right: 0.5em;
 }
 #command-input {
+  display: inline;
   background: transparent;
   border: none;
   color: inherit;
   font: inherit;
   outline: none;
-  width: 80%;
+  min-width: 1ch;
+  width: 100%;
+  min-height: 1em;
+  white-space: pre-wrap;
+  word-break: break-word;
+  caret-color: transparent;
+}
+
+#command-input::after {
+  content: '█';
+  animation: blink 1s steps(2, start) infinite;
 }
 .blink {
   animation: blink 1s steps(2, start) infinite;
 }
+
 @keyframes blink {
   to {
     visibility: hidden;
