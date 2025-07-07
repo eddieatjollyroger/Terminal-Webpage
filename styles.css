@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  background: black;
+  color: #33ff33;
+  font-family: "Press Start 2P", monospace;
+  font-size: 16px;
+}
+#terminal {
+  padding: 1em;
+  max-width: 800px;
+}
+.prompt {
+  margin-right: 0.5em;
+}
+#command-input {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  outline: none;
+  width: 80%;
+}
+.blink {
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
