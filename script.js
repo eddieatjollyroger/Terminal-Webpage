@@ -1,6 +1,12 @@
 const input = document.getElementById("command-input");
 const output = document.getElementById("output");
 
+let placeholderText = "type 'help' to get started";
+let placeholderIndex = 0;
+let placeholderInterval;
+let isTyping = false;
+
+
 let history = [];
 let historyIndex = -1;
 
@@ -17,7 +23,7 @@ const commands = {
   help: "Available commands: help, about, projects, personal, tecnologies, contact, clear, hello",
   about: "I am a Backend Developer who loves retro terminals, type projects to see a list of websites i've built or worked on",
   personal: "Firefox/Chrome Addon: Tab Explorer, Snake made with Unity Engine, Flappy bird during Hackathon, Linux fully dynamic rice(where my terminal love began), etc...",
-  projects: "Websites for: Avene, Ascendum, Banco De Portugal, Banco Economico, Eu Sou Digital, Luso, Minipreco, Mudar E Ganhar, Portugal Clinical Trials, Portugal Digital Summit, Parques de Sintra, Sagres, and many more...",
+  projects: "Built websites for: Avene, Ascendum, Banco De Portugal, Banco Economico, Eu Sou Digital, Luso, Minipreco, Mudar E Ganhar, Portugal Clinical Trials, Portugal Digital Summit, Parques de Sintra, Sagres, and many more...",
   contact: "Email: hello@joaopacheco.me",
   projects2: `
 - <a href="https://github.com/yourname/project1" target="_blank">Project 1</a>
@@ -55,6 +61,67 @@ function placeCaretAtEnd(el) {
     sel.addRange(range);
   }
 }
+
+function startPlaceholderTyping() {
+  if (input.textContent.trim() !== "" || document.activeElement === input) return;
+
+  isTyping = true;
+  input.classList.add("placeholder");
+
+  placeholderInterval = setInterval(() => {
+    if (placeholderIndex < placeholderText.length) {
+      input.textContent += placeholderText.charAt(placeholderIndex);
+      placeholderIndex++;
+    } else {
+      clearInterval(placeholderInterval);
+      setTimeout(() => {
+        input.textContent = "";
+        placeholderIndex = 0;
+        startPlaceholderTyping();
+      }, 2000);
+    }
+  }, 100);
+}
+
+function stopPlaceholderTyping() {
+  if (!isTyping) return;
+  clearInterval(placeholderInterval);
+  input.textContent = "";
+  input.classList.remove("placeholder");
+  placeholderIndex = 0;
+  isTyping = false;
+}
+
+// Start typing when not focused
+startPlaceholderTyping();
+
+input.addEventListener("focus", stopPlaceholderTyping);
+input.addEventListener("blur", () => {
+  if (input.textContent.trim() === "") startPlaceholderTyping();
+});
+input.addEventListener("input", () => {
+  if (input.textContent.trim() !== "") stopPlaceholderTyping();
+});
+
+//Refocus terminal on typing
+document.addEventListener("keydown", (e) => {
+  // Ignore if already focused
+  if (document.activeElement === input) return;
+
+  // Prevent default so keys don't scroll the page
+  e.preventDefault();
+
+  // Focus the terminal input
+  input.focus();
+
+  // Optionally insert the key the user pressed
+  // (Skip special keys like Shift, Control, etc.)
+  if (e.key.length === 1) {
+    input.textContent = e.key;
+    placeCaretAtEnd(input);
+    stopPlaceholderTyping(); // remove placeholder if running
+  }
+});
 
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
@@ -117,7 +184,7 @@ input.addEventListener("keydown", (e) => {
 });
 
 // Auto-focus when the page loads
-placeCaretAtEnd(input);
+//placeCaretAtEnd(input); //Disabled on terminal main page to display HELP message on launch
 
 function spinAnimation(element) {
   const frames = ['|', '/', '-', '\\'];
