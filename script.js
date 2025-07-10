@@ -38,6 +38,42 @@ const commands = {
   cat: catAsciiArt
 };
 
+function submitInput() {
+  const cmd = input.textContent.trim().toLowerCase();
+
+  if (cmd) {
+    history.push(cmd);
+    historyIndex = history.length;
+  }
+
+  const div = document.createElement("div");
+  div.textContent = `$ ${cmd}`;
+  output.appendChild(div);
+
+  if (cmd === "clear") {
+    output.innerHTML = "";
+  }
+  else if (cmd === "spin") {
+    const art = document.createElement("div");
+    output.appendChild(art);
+    spinAnimation(art);
+
+  } else if (commands[cmd]) {
+    const res = document.createElement("div");
+    output.appendChild(res);
+    typeWriter(commands[cmd], res);
+  } else {
+    const res = document.createElement("div");
+    typeWriter("Command not found. Type 'help'.", res);
+    output.appendChild(res);
+  }
+
+  input.textContent = "";
+  placeCaretAtEnd(input);
+
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
 function typeWriter(text, container, speed = 30) {
   let i = 0;
   function typing() {
@@ -78,7 +114,7 @@ function startPlaceholderTyping() {
         input.textContent = "";
         placeholderIndex = 0;
         startPlaceholderTyping();
-      }, 2000);
+      }, 5000);
     }
   }, 100);
 }
@@ -126,40 +162,7 @@ document.addEventListener("keydown", (e) => {
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
-
-    const cmd = input.textContent.trim().toLowerCase();
-
-    if (cmd) {
-      history.push(cmd);
-      historyIndex = history.length;
-    }
-
-    const div = document.createElement("div");
-    div.textContent = `$ ${cmd}`;
-    output.appendChild(div);
-
-    if (cmd === "clear") {
-      output.innerHTML = "";
-    }
-    else if (cmd === "spin") {
-      const art = document.createElement("div");
-      output.appendChild(art);
-      spinAnimation(art);
-
-    } else if (commands[cmd]) {
-      const res = document.createElement("div");
-      output.appendChild(res);
-      typeWriter(commands[cmd], res);
-    } else {
-      const res = document.createElement("div");
-      typeWriter("Command not found. Type 'help'.", res);
-      output.appendChild(res);
-    }
-
-    input.textContent = "";
-    placeCaretAtEnd(input);
-
-    window.scrollTo(0, document.body.scrollHeight);
+    submitInput();
   }
 
   if (e.key === "ArrowUp") {
@@ -206,3 +209,35 @@ function spinAnimation(element) {
 document.addEventListener("click", () => {
   document.getElementById("command-input").focus();
 });
+
+//query string handling
+let query = window.location.href;
+let queryOut = (/^[?#]/.test(query) ? query.slice(1) : query)
+  .split('&')
+  .reduce((params, param) => {
+    let paramWord = param.split('=')[1];
+    return paramWord;
+  }, {}
+  );
+
+let queryInputIndex = 0;
+
+if (queryOut) {
+  input.focus();
+  typeParam(queryOut)
+  placeCaretAtEnd(input);
+}
+
+function typeParam(queryInput) {
+  console.log(queryInput)
+  queryPlaceholderInterval = setInterval(() => {
+    if (queryInputIndex < queryInput.length) {
+      input.textContent += queryInput.charAt(queryInputIndex);
+      queryInputIndex++;
+    }
+    else{
+      clearInterval(queryPlaceholderInterval);
+      submitInput();
+    }
+  }, 100);
+}
