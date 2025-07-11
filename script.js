@@ -19,6 +19,10 @@ const catAsciiArt = `
     =^..^=
     `;
 
+const runNeofetch = () => {
+  showNeofetch();
+}
+
 const commands = {
   help: "Available commands: help, about, projects, personal, tecnologies, contact, clear, hello",
   about: "I am a Backend Developer who loves retro terminals, type projects to see a list of websites i've built or worked on",
@@ -35,8 +39,82 @@ const commands = {
   tecnologies: "C#, .NET, JAVA, NodeJS, SQL, GIT, Azure, Umbraco, etc..",
   spin: "spinner",
   rat: ratAsciiArt,
-  cat: catAsciiArt
+  cat: catAsciiArt,
+  neofetch: () =>{runNeofetch()}
 };
+
+function showNeofetch() {
+  const asciiArt = `
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠘⢦⠀⠀⠀⠀⠀⠀⠀⠀⢠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠈⢳⡀⠀⠀⠀⠀⠀⣠⣾⠙⢦⣀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠔⠂
+⠀⠀⠀⠀⠀⠀⠀⢸⡿⣗⡲⠶⠖⠋⣡⣯⡀⠀⠈⠉⠓⠒⠲⢶⣶⡖⠋⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⡼⠁⡿⢯⠙⠛⠋⣹⡇⠙⠲⢤⣀⣀⡤⠖⢫⠏⠀⠀⠀⠀⠀
+⠈⠙⠓⠶⢤⣴⣋⢀⣰⠃⠈⣿⡛⠉⣽⠙⠲⢤⡤⠞⢻⠀⢀⡏⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⢯⡙⢳⡲⢴⣇⣙⣄⣇⡤⠚⠉⡇⠀⢸⠀⢸⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣷⠀⣧⠀⣇⡼⢻⢿⡲⠤⣄⣧⠀⠸⡆⠈⣧⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢠⡇⣠⣿⡊⠙⢦⡞⠀⠳⣴⠋⠉⢉⡷⠿⠤⣌⣦⡀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣠⢾⣋⠁⠀⠙⢦⢸⡟⠉⠉⠙⣆⢠⠏⣠⠖⠋⠉⠉⠉⠓⠲⠤⡄
+⠀⠀⣠⠖⠋⠁⠀⠈⠙⠦⡀⠈⣿⣠⠤⠴⠶⠾⢿⣠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣆⡏⠀⠀⢀⣀⣀⣀⣻⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡷⠚⠉⠉⠁⠀⠀⠀⠙⣆⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢧⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+`;
+
+  const info = `
+joaopacheco@myterminal
+OS: Arch btw
+Shell: zsh
+WM: i3-gaps
+Theme: Retro Hackerman
+Uptime: 13 minutes and 37 seconds
+Resolution: 8k @ 400hz
+Packages: 9000+
+Memory: 24GB/200PB                         
+                                                       █      
+      █                                             ▄███      
+      ████                                       ▄▄▄██        
+        ▄████         ▄          ▄            ██████▄         
+           ██████     ▄         ▄         ██████              
+           █  ██████   ▄        ▄    ████████████             
+           █    ███████▄  ▐ ▐ ▐▄▄ █████  ▄███████             
+           ▀▄   ▄████████ █ ▐ ▐████      ████ ███▄            
+            ▀▄  ████ ██████ ▐ ▐ █▄       ████ ███             
+             ▀▄▄ ███ █████       █▄▄      ██████              
+               █▄▄██████ █  █ █  █ █▄▄▄▄▄▄▄████               
+                       ▄▄█        ▄                           
+                      ▄▄  ▄██████  ▄                          
+                         ██ █ █ ██  ▄▄                        
+                        ██ █ █ █ ██                           
+                       █████████████                          
+                                                              
+███████         ███████████     █████████    █████████████████
+   █████        █  ██  ███      ████████     ██████████████   
+       ██   █   █    ███        █    ██      █       ██       
+        ██ ███ ██  ███          ████████     █      ██        
+         ███  ██  ████████████████     █████████████          
+`;
+
+  const container = document.createElement("div");
+  container.classList.add("output");
+  container.style.display = "flex";
+  container.style.alignItems = "flex-start";
+  container.style.gap = "2em";
+  container.style.whiteSpace = "pre";
+
+  const artDiv = document.createElement("div");
+  artDiv.textContent = asciiArt;
+
+  const infoDiv = document.createElement("div");
+  infoDiv.textContent = info;
+
+  container.appendChild(artDiv);
+  container.appendChild(infoDiv);
+
+  document.getElementById("output").appendChild(container);
+}
+
 
 function submitInput() {
   const cmd = input.textContent.trim().toLowerCase();
@@ -57,8 +135,13 @@ function submitInput() {
     const art = document.createElement("div");
     output.appendChild(art);
     spinAnimation(art);
-
-  } else if (commands[cmd]) {
+  }
+  else if (cmd === "neofetch") {
+    const art = document.createElement("div");
+    output.appendChild(art);
+    commands.neofetch();
+  }
+   else if (commands[cmd]) {
     const res = document.createElement("div");
     output.appendChild(res);
     typeWriter(commands[cmd], res);
@@ -97,6 +180,7 @@ function placeCaretAtEnd(el) {
     sel.addRange(range);
   }
 }
+
 
 function startPlaceholderTyping() {
   if (input.textContent.trim() !== "" || document.activeElement === input) return;
@@ -169,7 +253,7 @@ input.addEventListener("keydown", (e) => {
     if (historyIndex > 0) {
       historyIndex--;
       input.textContent = history[historyIndex];
-
+      placeCaretAtEnd(input);
     }
     e.preventDefault();
   }
