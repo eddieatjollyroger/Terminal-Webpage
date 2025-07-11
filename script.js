@@ -19,12 +19,8 @@ const catAsciiArt = `
     =^..^=
     `;
 
-const runNeofetch = () => {
-  showNeofetch();
-}
-
 const commands = {
-  help: "Available commands: help, about, projects, personal, tecnologies, contact, clear, hello",
+  help: "Available commands: help, about, projects, personal, tecnologies, contact, clear, hello, neofetch",
   about: "I am a Backend Developer who loves retro terminals, type projects to see a list of websites i've built or worked on",
   personal: "Firefox/Chrome Addon: Tab Explorer, Snake made with Unity Engine, Flappy bird during Hackathon, Linux fully dynamic rice(where my terminal love began), etc...",
   projects: "Built websites for: Avene, Ascendum, Banco De Portugal, Banco Economico, Eu Sou Digital, Luso, Minipreco, Mudar E Ganhar, Portugal Clinical Trials, Portugal Digital Summit, Parques de Sintra, Sagres, and many more...",
@@ -40,7 +36,7 @@ const commands = {
   spin: "spinner",
   rat: ratAsciiArt,
   cat: catAsciiArt,
-  neofetch: () =>{runNeofetch()}
+  neofetch: () =>{showNeofetch();}
 };
 
 function showNeofetch() {
@@ -72,45 +68,25 @@ Uptime: 13 minutes and 37 seconds
 Resolution: 8k @ 400hz
 Packages: 9000+
 Memory: 24GB/200PB                         
-                                                       *
-      *                                             z***
-      ****                                       zzz**
-        z****         z          z            ******z
-           ******     z         z         ******
-           *  ******   z        z    ************
-           *    *******z  r r rzz *****  z*******
-           zz   z******** * r r****      **** ***z
-            zz  **** ****** r r *z       **** ***
-             zzz *** *****       *zz      ******
-               *zz****** *  * *  * *zzzzzzz****
-                       zz*        z
-                      zz  z******  z
-                         ** * * **  zz
-                        ** * * * **
-                       *************
-
-*******         ***********     *********    *****************
-   *****        *  **  ***      ********     **************
-       **   *   *    ***        *    **      *       **
-        ** *** **  ***          ********     *      **
-         ***  **  ****************     *************     
+┬│┬┌─┐┬─┐┌┬┐
+│││┌─┘├┬┘│││
+└┴┘└─┘┴└──┴┘
 `;
 
   const container = document.createElement("div");
   container.classList.add("output");
-  container.style.display = "flex";
+  container.classList.add("neofetch");
   container.style.alignItems = "flex-start";
   container.style.gap = "2em";
   container.style.whiteSpace = "pre";
 
   const artDiv = document.createElement("div");
-  artDiv.textContent = asciiArt;
+  container.appendChild(artDiv);
+  typeWriter(asciiArt, artDiv,15);
 
   const infoDiv = document.createElement("div");
-  infoDiv.textContent = info;
-
-  container.appendChild(artDiv);
   container.appendChild(infoDiv);
+  typeWriter(info,infoDiv);
 
   document.getElementById("output").appendChild(container);
 }
@@ -137,8 +113,6 @@ function submitInput() {
     spinAnimation(art);
   }
   else if (cmd === "neofetch") {
-    const art = document.createElement("div");
-    output.appendChild(art);
     commands.neofetch();
   }
    else if (commands[cmd]) {

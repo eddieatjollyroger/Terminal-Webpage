@@ -4,6 +4,7 @@ body {
   color: #33ff33;
   font-family: "Press Start 2P", monospace;
   font-size: 16px;
+  word-break: break-all;
 }
 #terminal {
   padding: 1em;
@@ -11,8 +12,13 @@ body {
 .prompt {
   margin-right: 0.5em;
 }
+#input-line{
+  display: flex;
+  align-items: center;
+}
 #command-input {
-  display: inline;
+  flex:1;
+  display: flex;
   background: transparent;
   border: none;
   color: inherit;
@@ -20,10 +26,10 @@ body {
   outline: none;
   min-width: 1ch;
   width: 100%;
+  max-width: 100%;
   min-height: 1em;
-  white-space: pre-wrap;
-  word-break: break-word;
   caret-color: transparent;
+
 }
 #command-input.placeholder {
   color: #666;
@@ -33,6 +39,9 @@ body {
 #command-input::after {
   content: '█';
   animation: blink 1s steps(2, start) infinite;
+  margin-top: -0.25rem;
+
+  
 }
 .blink {
   animation: blink 1s steps(2, start) infinite;
@@ -42,4 +51,24 @@ body {
   to {
     visibility: hidden;
   }
+}
+
+.neofetch{
+  display:flex;
+}
+/* Responsive adjustments */
+@media (max-width: 600px) {
+ .neofetch{
+  display:inline-block;
+ }
+#command-input{
+  display: inline-block;
+}
+#command-input::after {
+  position: relative;
+  top:-2px;
+}
+#command-input br{
+  display:none;
+}
 }
