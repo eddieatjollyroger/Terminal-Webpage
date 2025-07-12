@@ -31,6 +31,7 @@ const commands = {
   spin: "spinner",
   rat: ratAsciiArt,
   cat: catAsciiArt,
+  ls: "these are not the files you are looking for",
   neofetch: () =>{showNeofetch();}
 };
 
