@@ -308,9 +308,11 @@ let queryOut = (/^[?#]/.test(query) ? query.slice(1) : query)
 let queryInputIndex = 0;
 
 if (queryOut) {
+  window.addEventListener("focus", () => {
   input.focus();
   typeParam(queryOut)
   placeCaretAtEnd(input);
+  });
 }
 
 function typeParam(queryInput) {
