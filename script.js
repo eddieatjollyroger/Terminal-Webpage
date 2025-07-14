@@ -316,7 +316,6 @@ if (queryOut) {
 }
 
 function typeParam(queryInput) {
-  console.log(queryInput)
   queryPlaceholderInterval = setInterval(() => {
     if (queryInputIndex < queryInput.length) {
       input.textContent += queryInput.charAt(queryInputIndex);
